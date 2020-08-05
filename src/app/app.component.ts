@@ -5,17 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  photos = [
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sultan_the_Barbary_Lion.jpg/440px-Sultan_the_Barbary_Lion.jpg',
-      description: 'Leão'
-    },
-    {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Lioness_Etosha_NP.jpg/500px-Lioness_Etosha_NP.jpg',
-      description: 'Leoa'
-    },
-    {
+export class AppComponent { }
+
+/* {
       url: 'https://thegamestower.files.wordpress.com/2011/01/capa-ac3a7c3a3o-games-ed-7.jpg',
       description: 'Ação Games Clube'
     },
@@ -26,6 +18,4 @@ export class AppComponent {
     {
       url:"https://www.selectgame.com.br/wp-content/uploads/2011/12/revista-oficial-playstation-edicao-157-capa-medio.jpg",
       description:"League of Legends"
-    }
-  ];
-}
+    }*/
