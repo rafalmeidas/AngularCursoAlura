@@ -1,8 +1,13 @@
-<ol class="list-unstyled row">
-    <li *ngFor="let photo of photos" class="col-4">
-        <ap-photo
-            [url]="photo.url"
-            [description]="photo.description">
-        </ap-photo>
-    </li>
-</ol>
+<div class="text-center mt-3 mb-3">
+    <form>
+        <input
+            class="rounded"
+            type="search"
+            placeholder="search..."
+            autofocus
+           (keyup) = "filter = $event.target.value"
+        >
+    </form>
+</div>
+{{ filter }}
+<app-photos [photos] = "photos"></app-photos>
