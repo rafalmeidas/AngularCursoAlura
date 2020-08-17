@@ -1,11 +1,15 @@
-<div class="text-center mt-3 mb-3">
-  <form>
-    <input class="rounded" type="search" placeholder="search..." autofocus (keyup)="filter = $event.target.value">
-  </form>
+<div class="container">
+  
+  <p class="text-center text-muted" *ngIf="!photos.length">
+    Sorry, no photos
+  </p>
+
+  <div class="text-center mt-3 mb-3">
+    <form>
+      <input class="rounded" type="search" placeholder="search..." autofocus
+        (keyup)="debounce.next($event.target.value)">
+    </form>
+  </div>
+
+  <app-photos [photos]="photos | filterByDescription: filter"></app-photos>
 </div>
-
-<p class="text-center text-muted" *ngIf="!photos.length">
-  Sorry, no photos
-</p>
-
-<app-photos [photos]="photos | filterByDescription: filter"></app-photos>
