@@ -1,15 +1,22 @@
-<div class="container">
-  
-  <p class="text-center text-muted" *ngIf="!photos.length">
-    Sorry, no photos
-  </p>
+<div class="">
 
   <div class="text-center mt-3 mb-3">
     <form>
-      <input class="rounded" type="search" placeholder="search..." autofocus
-        (keyup)="debounce.next($event.target.value)">
+      <i aria-hidden="true" class="fa fa-search mr-1 "></i>
+      <input 
+        class="rounded" 
+        type="search" 
+        placeholder="search..." 
+        autofocus
+        (keyup)="debounce.next($event.target.value)"
+        >
     </form>
   </div>
 
-  <app-photos [photos]="photos | filterByDescription: filter"></app-photos>
+  <ap-photos [photos]="photos | filterByDescription: filter"></ap-photos>
+
+  <ap-load-button 
+    (click)="load()" 
+    [hasMore]="hasMore">
+  </ap-load-button>
 </div>

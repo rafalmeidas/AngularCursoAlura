@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Photo } from '../../photo/photo';
 
 @Component({
-  selector: 'app-photos',
+  selector: 'ap-photos',
   templateUrl: './photos.component.html',
   styleUrls: ['./photos.component.css']
 })
