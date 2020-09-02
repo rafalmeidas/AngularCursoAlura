@@ -21,4 +21,4 @@ export class PhotoService {
         return this.http
             .get<Photo[]>(`${this.API}${userName}/photos`, { params });
     }
-} 
+}

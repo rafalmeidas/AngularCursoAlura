@@ -7,11 +7,8 @@
 
     <div *ngFor="let photo of cols" class="col-4">
 
-      <ap-card [title]="photo.description">
-        <ap-photo 
-          [url]="photo.url" 
-          [description]="photo.description">
-        </ap-photo>
+      <ap-card>
+        <ap-photo [url]="photo.url" [description]="photo.description"></ap-photo>
 
         <div class="text-center">
           <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i>{{ photo.likes }}
