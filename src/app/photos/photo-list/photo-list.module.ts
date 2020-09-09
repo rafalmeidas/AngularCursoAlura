@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component'
 import { PhotoModule } from '../photo/photo.module';
 import { CardModule } from '../../shared/components/card/card.module';
 import { ContainerModule } from '../../shared/components/container/container.module';
+import { DarkenOnHoverModule } from '../../shared/directives/darken-on-hover/darken-on-hover.module'
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { ContainerModule } from '../../shared/components/container/container.mod
         CommonModule,
         PhotoModule,
         ContainerModule,
-        CardModule
+        CardModule,
+        DarkenOnHoverModule
     ]
 })
 export class PhotoListModule { }

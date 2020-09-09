@@ -19,6 +19,7 @@ export class PhotosComponent implements OnChanges {
     }
   }
 
+  //Quebra o array em 3 objetos por linha
   groupColomns(photos: Photo[]) {
     const newRows = [];
 

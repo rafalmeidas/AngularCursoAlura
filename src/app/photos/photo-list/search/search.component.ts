@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit, OnDestroy{
     
+    @Input() value: string = '';
     //Evento onTyping esse foi o nome dado poderia ser qualquer um
     @Output() onTyping = new EventEmitter<string>();
     debounce: Subject<string> = new Subject<string>();
