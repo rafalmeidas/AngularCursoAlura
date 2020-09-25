@@ -17,6 +17,6 @@ export class AuthService implements OnInit{
   }
 
   autenticate(userName: string, password: string){
-    return this.http.post( API_URL + 'user/login', {userName: userName, password: password})
+    return this.http.post( API_URL + 'user/login', {userName: userName, password: password});
   }
 }

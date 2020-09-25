@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { SignInComponent } from '../home/signin/signin.component';
 import { ContainerModule } from '../shared/components/container/container.module';
@@ -12,7 +13,8 @@ import { VMessageModule } from '../shared/components/vmessage/vmessage.module'
         CommonModule,
         ReactiveFormsModule,
         ContainerModule,   
-        VMessageModule
+        VMessageModule,
+        RouterModule
     ]
 })
 export class HomeModule {

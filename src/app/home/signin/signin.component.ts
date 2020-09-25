@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../../core/auth/auth.service'
+import { PlataformDetectorService } from '../../core/plataform-detector/plataform-detector.service';
 
 @Component({
   selector: 'app-signin',
@@ -10,11 +13,13 @@ import { AuthService } from '../../core/auth/auth.service'
 export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
-  val: Validators;
+  @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router,
+    private platformDetectorService: PlataformDetectorService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -23,17 +28,20 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  login(){
+  login() {
 
     const userName = this.loginForm.get('userName').value;
     const password = this.loginForm.get('password').value;
     this.authService.autenticate(userName, password).subscribe(
-      () => alert('Autenticado!'),
+      () =>
+        this.router.navigate(['user', userName]),
       err => {
         console.log(err);
         this.loginForm.reset();
-        alert('User name or pasword is incorrect!')
-    
+        // Se a plataforma for no navegador ele vai executar o focus no campo, se não nem irá executar por isso está utilizando o &&
+        this.platformDetectorService.isPlatformBrowser() &&
+                this.userNameInput.nativeElement.focus();
+        alert('User name or pasword is incorrect!');
       }
     );
   }
