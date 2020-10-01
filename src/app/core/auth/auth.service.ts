@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TokenService } from '../token-service/token-service.service';
+import { UserService } from '../user/user.service';
 import { tap } from 'rxjs/operators';
 
 
@@ -15,7 +15,7 @@ export class AuthService implements OnInit{
   
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService) { }
+    private userService: UserService) { }
 
   ngOnInit(): void {}
 
@@ -23,7 +23,7 @@ export class AuthService implements OnInit{
     return this.http.post( API_URL + 'user/login', {userName: userName, password: password}, {observe: 'response'})
     .pipe( tap(res => {
       const authToken = res.headers.get('x-access-token');
-      this.tokenService.setToken(authToken);
+      this.userService.setToken(authToken);
       console.log(authToken);
     }));
   }
