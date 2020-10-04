@@ -24,7 +24,7 @@ export class AuthService implements OnInit{
     .pipe( tap(res => {
       const authToken = res.headers.get('x-access-token');
       this.userService.setToken(authToken);
-      console.log(authToken);
+      //console.log(authToken);
     }));
   }
 }
