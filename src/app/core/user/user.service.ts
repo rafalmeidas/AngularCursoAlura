@@ -11,6 +11,7 @@ export class UserService {
 
     //Um Observable que é utilizado para emitir um valor que pode ser passado/acesivel para quem fizer o subscribe
     private userSubject = new BehaviorSubject<User>(null);
+    private userName: string;
 
     constructor(private tokenService: TokenService) {
         //verifica se tem o token se tiver executa o método de decodificar o token e emitir
@@ -32,6 +33,21 @@ export class UserService {
     private decodeAndNotify() {
         const token = this.tokenService.getToken();
         const user = jwt_decode(token) as User; //aqui a chamada jwt_decode
+        this.userName = user.name;
         this.userSubject.next(user); //emitindo os dados após a conversão do token, pode ser acesado no método getUser()
+    }
+
+    logout(){
+        this.tokenService.removeToken();
+        //Emite um valor para o usuário vazio
+        this.userSubject.next(null);
+    }
+
+    isLogged(){
+        return this.tokenService.hasToken();
+    }
+
+    getUserName(): string {
+        return this.userName;
     }
 }
