@@ -1,19 +1,35 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { lowerCaseValidator } from '../../shared/validators/lower-case.validator';
 import { UserNotTakenValidatorService } from '../../home/signup/user-not-taken.validator.service';
+import { PlataformDetectorService } from 'src/app/core/plataform-detector/plataform-detector.service';
+import { SignUpService } from './signup.service';
+import { NewUser } from 'src/app/core/user/new-user';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './signup.component.html',
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, AfterViewInit {
 
     signUpForm: FormGroup;
+    @ViewChild('emailInput') emailInput: ElementRef<HTMLInputElement>;
 
     constructor(
         private formBuilder: FormBuilder,
-        private userNotTakenValidatorService: UserNotTakenValidatorService) { }
+        private userNotTakenValidatorService: UserNotTakenValidatorService,
+        private plataformDetectorService: PlataformDetectorService,
+        private cdRef: ChangeDetectorRef,
+        private signupService: SignUpService,
+        private router: Router
+        ) { }
+
+    ngAfterViewInit(): void {
+        this.plataformDetectorService.isPlatformBrowser() &&
+            this.emailInput.nativeElement.focus();
+        this.cdRef.detectChanges();
+    }
 
     ngOnInit(): void {
         this.signUpForm = this.formBuilder.group({
@@ -49,8 +65,10 @@ export class SignUpComponent implements OnInit {
         });
     }
 
-    login() {
-        const userName = this.signUpForm.get('userName').value;
-        const password = this.signUpForm.get('password').value;
+    register() {
+        const newUser = this.signUpForm.getRawValue() as NewUser;
+        this.signupService.signup(newUser).subscribe(
+        () => this.router.navigate(['']),
+            err => console.log(err));
     }
 }

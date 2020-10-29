@@ -20,11 +20,10 @@ export class AuthService implements OnInit{
   ngOnInit(): void {}
 
   autenticate(userName: string, password: string){
-    return this.http.post( API_URL + 'user/login', {userName: userName, password: password}, {observe: 'response'})
+    return this.http.post( API_URL + 'user/login', {userName, password}, {observe: 'response'})
     .pipe( tap(res => {
-      const authToken = res.headers.get('x-access-token');
-      this.userService.setToken(authToken);
-      //console.log(authToken);
+      const token = res.headers.get('x-access-token');
+      this.userService.setToken(token);
     }));
   }
 }
