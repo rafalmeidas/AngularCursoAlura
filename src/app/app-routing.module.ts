@@ -5,26 +5,17 @@ import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolve';
-import { SignInComponent } from './home/signin/signin.component';
-import { SignUpComponent } from './home/signup/signup.component';
-import { AuthGuard } from './core/auth/auth.guard';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        component: SignInComponent,
-      },
-      {
-        path: 'signup',
-        component: SignUpComponent,
-      },
-    ]
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    path: 'home', 
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+
   },
   {
     path: 'user/:userName',
