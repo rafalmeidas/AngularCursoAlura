@@ -41,7 +41,7 @@ export class PhotoFormComponent implements OnInit {
   handleFile(file: File){
     this.file = file;
     const reader = new FileReader();
-    reader.onload = (event: any) => this.preview = event.target.result;
+    reader.onload = (event: any) => this.preview = event.target.result; //disponibiliza de forma assincrona o acesso a imagem
     reader.readAsDataURL(file);
   }
 
