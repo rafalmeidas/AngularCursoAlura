@@ -31,7 +31,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { 
-    path: 'p/:IdPhoto', 
+    path: 'p/:idPhoto', 
     component: PhotoDetailsComponent,
   },
   { path: '**', component: NotFoundComponent }

@@ -1,1 +1,15 @@
-<h1>Olá</h1>
+<div class="bg-white border" *ngIf="(photo$ | async) as photo">
+  <div class="row">
+    <div class="col-lg-8">
+      <ap-photo [url]="photo.url" [description]="photo.description"></ap-photo>
+    </div>
+
+    <div class="col-lg-4 p-4">
+      <small>
+        <p class="text-left break-word">{{photo.description}}</p>
+        <hr>
+      </small>
+      <ap-photo-comments [idPhoto]='idPhoto'></ap-photo-comments>
+    </div>
+  </div>
+</div>
